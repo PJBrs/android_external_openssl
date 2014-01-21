@@ -292,9 +292,9 @@ static int ssl3_get_record(SSL *s)
 	unsigned mac_size, orig_len;
 	size_t extra;
 #if defined(SSL3_ALIGN_PAYLOAD) && SSL3_ALIGN_PAYLOAD!=0
-	long align=SSL3_ALIGN_PAYLOAD;
+       long align=SSL3_ALIGN_PAYLOAD;
 #else
-	long align=0;
+       long align=0;
 #endif
 
 	rr= &(s->s3->rrec);

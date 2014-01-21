@@ -8,6 +8,9 @@
 #ifndef OPENSSL_NO_CAST
 # define OPENSSL_NO_CAST
 #endif
+#ifndef OPENSSL_NO_DTLS1
+# define OPENSSL_NO_DTLS1
+#endif
 #ifndef OPENSSL_NO_GMP
 # define OPENSSL_NO_GMP
 #endif
@@ -58,6 +61,9 @@
 #ifdef OPENSSL_ALGORITHM_DEFINES
 # if defined(OPENSSL_NO_CAST) && !defined(NO_CAST)
 #  define NO_CAST
+# endif
+# if defined(OPENSSL_NO_DTLS1) && !defined(NO_DTLS1)
+#  define NO_DTLS1
 # endif
 # if defined(OPENSSL_NO_GMP) && !defined(NO_GMP)
 #  define NO_GMP

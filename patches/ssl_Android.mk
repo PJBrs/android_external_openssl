@@ -12,6 +12,7 @@ local_src_files:= \
 	s2_lib.c \
 	s2_enc.c \
 	s2_pkt.c \
+        s3_cbc.c \
 	s3_meth.c \
 	s3_srvr.c \
 	s3_clnt.c \
