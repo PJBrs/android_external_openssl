@@ -482,7 +482,33 @@ local_c_flags := -DNO_WINDOWS_BRAINDEATH
 
 #######################################
 
-# target
+# target static lib
+include $(CLEAR_VARS)
+include $(LOCAL_PATH)/../android-config.mk
+LOCAL_SRC_FILES += $(local_src_files)
+LOCAL_CFLAGS += $(local_c_flags)
+LOCAL_C_INCLUDES += $(local_c_includes)
+LOCAL_STATIC_LIBRARIES += libz
+ifeq ($(TARGET_ARCH),arm)
+	LOCAL_SRC_FILES += $(arm_src_files)
+	LOCAL_CFLAGS += $(arm_cflags)
+else
+	LOCAL_SRC_FILES += $(non_arm_src_files)
+endif
+ifeq ($(TARGET_SIMULATOR),true)
+	# Make valgrind happy.
+	LOCAL_CFLAGS += -DPURIFY
+    LOCAL_LDLIBS += -ldl
+#else
+#	LOCAL_SHARED_LIBRARIES += libdl
+endif
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE:= libcrypto
+include $(BUILD_STATIC_LIBRARY)
+
+#######################################
+
+# target shared lib
 include $(CLEAR_VARS)
 include $(LOCAL_PATH)/../android-config.mk
 LOCAL_SRC_FILES += $(local_src_files)
